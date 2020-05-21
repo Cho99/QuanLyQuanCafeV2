@@ -17,15 +17,32 @@ namespace QuanLyQuanCafe
 {
     public partial class fTableManager : Form
     {
-        public fTableManager()
+        private Account loginAccount;
+
+        public Account LoginAccount {
+            get => loginAccount;
+            set { loginAccount = value; ChangeAccount(loginAccount.Type); } 
+        }
+
+        public fTableManager(Account acc)
         {
             InitializeComponent();
+
+            this.LoginAccount = acc;
+
             LoadCategory();
             LoadTable();
             loadCbTable(cbSwitchTable);
         }
 
         #region Method
+        // Thay Đổi tài khoản
+        void ChangeAccount(int type)
+        {
+            adminToolStripMenuItem.Enabled = type == 1;
+            thôngTinTàiKhoảnToolStripMenuItem.Text += " (" + LoginAccount.DisplayName + ")";
+        }
+
         void LoadTable()
         {
             flpTable.Controls.Clear();
@@ -143,9 +160,13 @@ namespace QuanLyQuanCafe
 
         private void thôngTinCáNhânToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fAcountProfile f = new fAcountProfile();
+            fAcountProfile f = new fAcountProfile(LoginAccount);
             f.ShowDialog();
         }
+
+     
+
+        
 
         private void adminToolStripMenuItem_Click(object sender, EventArgs e)
         {

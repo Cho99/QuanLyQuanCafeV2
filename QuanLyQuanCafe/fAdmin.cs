@@ -16,8 +16,14 @@ namespace QuanLyQuanCafe
         public fAdmin()
         {
             InitializeComponent();
+            load();
+        }
+
+        void load()
+        {
             loadDateTime();
             LoadListByDate(dtpkFromDate.Value, dtpkToDate.Value);
+            loadListFood();
         }
 
         private void fAdmin_Load(object sender, EventArgs e)
@@ -25,6 +31,12 @@ namespace QuanLyQuanCafe
           
         }
         #region methods
+        void loadListFood()
+        {
+            dtgvFood.DataSource = FoodDAO.Instance.GetListFood();
+        }
+
+        // Load thời gian hiển thị của bảng thống kê
         void loadDateTime()
         {
             DateTime today = DateTime.Now;
@@ -39,13 +51,21 @@ namespace QuanLyQuanCafe
         #endregion
 
         #region events
+        //Thống kê theo ngày
         private void btnViewBill_Click(object sender, EventArgs e)
         {
             //dtpkFromDate.Value: Ngày bắt đầu
             //dtpkToDate.Value: Ngày kết thúc
             LoadListByDate(dtpkFromDate.Value, dtpkToDate.Value);
         }
+
+        // Xem đồ ăn
+        private void btnShowFood_Click(object sender, EventArgs e)
+        {
+            loadListFood();
+        }
         #endregion
+
 
     }
 }
