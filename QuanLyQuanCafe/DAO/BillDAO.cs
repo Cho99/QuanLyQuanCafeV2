@@ -37,6 +37,13 @@ namespace QuanLyQuanCafe.DAO
             DataProvider.Instance.ExecuteNonQuery("exec createBill @idTable", new object[] { id });
         }
 
+        public void CheckOut(int id)
+        {
+            string query = "Update Bill set status = 1 where id = " + id + "";
+            DataProvider.Instance.ExecuteNonQuery(query);
+        }
+        
+        //Lất id Bill lớn nhất
         public int GetMaxIDBill()
         {
             try
