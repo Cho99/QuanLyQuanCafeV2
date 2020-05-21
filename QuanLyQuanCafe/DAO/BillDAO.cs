@@ -36,6 +36,13 @@ namespace QuanLyQuanCafe.DAO
         {
             DataProvider.Instance.ExecuteNonQuery("exec createBill @idTable", new object[] { id });
         }
+        
+        // Thanh Toán => Update lại status của bàn
+        public void CheckOut(int id, int discount)
+        {
+            string query = "Update Bill set status = 1," + "discount =" + discount + " where id = " + id + "";
+            DataProvider.Instance.ExecuteNonQuery(query);
+        }
 
         public void CheckOut(int id)
         {

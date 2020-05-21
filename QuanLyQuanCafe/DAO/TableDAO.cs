@@ -22,6 +22,16 @@ namespace QuanLyQuanCafe.DAO
 
         private TableDAO() { }
 
+        public void SwitchTable(int id1, int id2)
+        {
+            DataTable data = DataProvider.Instance.ExecuteQuery("ChuyenBan @idTable1 , @idTable2", new object[] { id1, id2 });
+        }
+
+        public void MergeTable(int id1 , int id2)
+        {
+            DataTable data = DataProvider.Instance.ExecuteQuery("USP_MergeTable @firstBill , @secondBill", new object[] { id1, id2 });
+        }
+
         public List<Table> LoadTableList()
         {
             List<Table> tableList = new List<Table>();
