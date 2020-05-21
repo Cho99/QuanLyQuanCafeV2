@@ -22,6 +22,7 @@ namespace QuanLyQuanCafe
             InitializeComponent();
 
             LoadTable();
+            LoadCategory();
         }
 
         #region Method
@@ -45,6 +46,18 @@ namespace QuanLyQuanCafe
                 }
                 flpTable.Controls.Add(btn);
             }
+        }
+        void LoadCategory()
+        {
+            List<Category> listCategory = CategoryDAO.Instance.GetListCategory();
+            cbCategory.DataSource = listCategory;
+            cbCategory.DisplayMember = "Name";
+        }
+        void LoadFoodByCategory(int id)
+        {
+            List<Food> listFood = FoodDAO.Instance.GetFoodByCategoryID(id);
+            cbFood.DataSource = listFood;
+            cbFood.DisplayMember = "Name";
         }
         #endregion
         
@@ -74,9 +87,45 @@ namespace QuanLyQuanCafe
         void btn_Click(object sender, EventArgs e)
         {
             int tableId = ((sender as Button).Tag as Table).ID;
+            lsvBill.Tag = (sender as Button).Tag;
             ShowBill(tableId);
         }
-        #endregion
+
+        private void cbCategory_SelectedIndexChange(object sender, EventArgs e)
+        {
+            int id = 0;
+
+            ComboBox cb = sender as ComboBox;
+
+            if(cb.SelectedItem == null)
+            {
+                return;
+            }
+            // Lấy giá trị category từ Combobox cb_Catergoy
+            Category selected = cb.SelectedItem as Category;
+            id = selected.ID; //Lấy id từ giá trị Category được chọn
+            LoadFoodByCategory(id);
+        }
+
+        private void btnAddFood_Click(object sender, EventArgs e)
+        {
+            Table table = lsvBill.Tag as Table;
+            int idBill = BillDAO.Instance.GetUnCheckBill(table.ID);
+
+            int idFood = (cbFood.SelectedItem as Food).ID;
+            int count = (int)nmFoodCount.Value;
+            if (idBill == -1)
+            {
+                BillDAO.Instance.createtBill(table.ID);
+                //BillDAO.Instance.GetMaxIDBill() : Hàm GetMaxIDBill() là dùng để lấy id lớn nhất của bảng Bill vừa mới tạo
+                BillinfoDAO.Instance.createtBillInfo(BillDAO.Instance.GetMaxIDBill(), idFood, count);
+            } else
+            {
+                BillinfoDAO.Instance.createtBillInfo(idBill, idFood, count);
+            }
+            ShowBill(table.ID);
+        }
+
 
         private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -109,5 +158,10 @@ namespace QuanLyQuanCafe
         {
 
         }
+
+
+        #endregion
+
+       
     }
 }

@@ -31,5 +31,23 @@ namespace QuanLyQuanCafe.DAO
             }
             return -1;
         }
+        //Tạo Bill mới
+        public void createtBill(int id)
+        {
+            DataProvider.Instance.ExecuteNonQuery("exec createBill @idTable", new object[] { id });
+        }
+
+        public int GetMaxIDBill()
+        {
+            try
+            {
+                return (int)DataProvider.Instance.ExecuteScalar("Select MAX(id) from Bill");
+            }
+            catch
+            {
+                return 1;
+            }
+          
+        }
     }
 }

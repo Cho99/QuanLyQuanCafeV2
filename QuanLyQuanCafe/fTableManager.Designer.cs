@@ -40,6 +40,8 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txt_TotalPrice = new System.Windows.Forms.TextBox();
             this.cbSwitchTable = new System.Windows.Forms.ComboBox();
             this.btnSwitchTable = new System.Windows.Forms.Button();
             this.nmDiscount = new System.Windows.Forms.NumericUpDown();
@@ -51,8 +53,6 @@
             this.cbFood = new System.Windows.Forms.ComboBox();
             this.cbCategory = new System.Windows.Forms.ComboBox();
             this.flpTable = new System.Windows.Forms.FlowLayoutPanel();
-            this.txt_TotalPrice = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -165,6 +165,27 @@
             this.panel3.Size = new System.Drawing.Size(322, 54);
             this.panel3.TabIndex = 3;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(154, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 15);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Tổng số tiền";
+            // 
+            // txt_TotalPrice
+            // 
+            this.txt_TotalPrice.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txt_TotalPrice.ForeColor = System.Drawing.Color.OrangeRed;
+            this.txt_TotalPrice.Location = new System.Drawing.Point(148, 28);
+            this.txt_TotalPrice.Name = "txt_TotalPrice";
+            this.txt_TotalPrice.ReadOnly = true;
+            this.txt_TotalPrice.Size = new System.Drawing.Size(100, 25);
+            this.txt_TotalPrice.TabIndex = 8;
+            this.txt_TotalPrice.Text = "0";
+            this.txt_TotalPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // cbSwitchTable
             // 
             this.cbSwitchTable.FormattingEnabled = true;
@@ -205,12 +226,13 @@
             // 
             // btnCheckOut
             // 
+            this.btnCheckOut.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnCheckOut.Location = new System.Drawing.Point(253, 6);
             this.btnCheckOut.Margin = new System.Windows.Forms.Padding(2);
             this.btnCheckOut.Name = "btnCheckOut";
             this.btnCheckOut.Size = new System.Drawing.Size(64, 46);
             this.btnCheckOut.TabIndex = 3;
-            this.btnCheckOut.Text = "Thêm món";
+            this.btnCheckOut.Text = "Thanh Toán";
             this.btnCheckOut.UseVisualStyleBackColor = true;
             // 
             // panel4
@@ -252,6 +274,7 @@
             this.btnAddFood.TabIndex = 2;
             this.btnAddFood.Text = "Thêm món";
             this.btnAddFood.UseVisualStyleBackColor = true;
+            this.btnAddFood.Click += new System.EventHandler(this.btnAddFood_Click);
             // 
             // cbFood
             // 
@@ -270,6 +293,7 @@
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(204, 21);
             this.cbCategory.TabIndex = 0;
+            this.cbCategory.SelectedIndexChanged += new System.EventHandler(this.cbCategory_SelectedIndexChange);
             // 
             // flpTable
             // 
@@ -279,27 +303,6 @@
             this.flpTable.Size = new System.Drawing.Size(421, 418);
             this.flpTable.TabIndex = 5;
             this.flpTable.Paint += new System.Windows.Forms.PaintEventHandler(this.flpTable_Paint);
-            // 
-            // txt_TotalPrice
-            // 
-            this.txt_TotalPrice.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_TotalPrice.ForeColor = System.Drawing.Color.OrangeRed;
-            this.txt_TotalPrice.Location = new System.Drawing.Point(148, 26);
-            this.txt_TotalPrice.Name = "txt_TotalPrice";
-            this.txt_TotalPrice.ReadOnly = true;
-            this.txt_TotalPrice.Size = new System.Drawing.Size(100, 25);
-            this.txt_TotalPrice.TabIndex = 8;
-            this.txt_TotalPrice.Text = "0";
-            this.txt_TotalPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(154, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 15);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Tổng số tiền";
             // 
             // fTableManager
             // 

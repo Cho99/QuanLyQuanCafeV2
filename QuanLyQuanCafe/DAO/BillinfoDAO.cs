@@ -32,5 +32,10 @@ namespace QuanLyQuanCafe.DAO
 
             return listBillInfo;
         }
+
+        public void createtBillInfo(int idBill, int idFood, int count)
+        {
+            DataProvider.Instance.ExecuteNonQuery("exec createBillInfo @idBill , @idFood , @count", new object[] { idBill, idFood, count });
+        }
     }
 }
