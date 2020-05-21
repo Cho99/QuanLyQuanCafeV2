@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Menu = QuanLyQuanCafe.DTO.Menu;
@@ -44,24 +46,28 @@ namespace QuanLyQuanCafe
                 flpTable.Controls.Add(btn);
             }
         }
-
         #endregion
         
         void ShowBill(int id)
         {
             lsvBill.Items.Clear();
             List<Menu> listBillInfo = MenuDAO.Instance.GetListMenuByTable(id);
-
+            float totalPrice = 0;
             foreach (Menu item in listBillInfo)
             {
                 ListViewItem listView = new ListViewItem(item.FoodName.ToString());
                 listView.SubItems.Add(item.Count.ToString());
                 listView.SubItems.Add(item.Price.ToString());
                 listView.SubItems.Add(item.TotalPrice.ToString());
-
+                totalPrice += item.TotalPrice;
                 //Đổ dữ liệu vào bảng lsvBill
                 lsvBill.Items.Add(listView);
             }
+            //Xét loại tiền tệ
+            CultureInfo culture = new CultureInfo("vi-VN");
+            Thread.CurrentThread.CurrentCulture = culture;
+
+            txt_TotalPrice.Text = totalPrice.ToString("c" , culture);
         }
 
         #region Events

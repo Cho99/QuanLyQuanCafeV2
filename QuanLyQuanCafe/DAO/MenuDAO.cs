@@ -23,7 +23,7 @@ namespace QuanLyQuanCafe.DAO
         public List<Menu> GetListMenuByTable(int id)
         {
             List<Menu> listMenu = new List<Menu>();
-            string query = "Select f.name, bi.count, f.price, f.price*bi.count as totalPrice from BillInfo As bi, Bill as b, Food as f where bi.idBill = b.id And bi.idFood = f.id And b.idTable =" + id + " ";
+            string query = "Select f.name, bi.count, f.price, f.price*bi.count as totalPrice from BillInfo As bi, Bill as b, Food as f where bi.idBill = b.id And bi.idFood = f.id And b.status = 0 And b.idTable =" + id + " ";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
             {
@@ -31,7 +31,6 @@ namespace QuanLyQuanCafe.DAO
                 listMenu.Add(menu);
             }
             return listMenu;
-
         }
     }
 }
