@@ -38,17 +38,17 @@ namespace QuanLyQuanCafe.DAO
         }
         
         // Thanh Toán => Update lại status của bàn
-        public void CheckOut(int id, int discount)
+        public void CheckOut(int id, int discount, float totalPrice)
         {
-            string query = "Update Bill set status = 1," + "discount =" + discount + " where id = " + id + "";
+            string query = "Update Bill set DateCheckOut = GETDATE(), status = 1," + "discount =" + discount + ", totalPrice = " + totalPrice + " where id = " + id + "";
             DataProvider.Instance.ExecuteNonQuery(query);
         }
 
-        public void CheckOut(int id)
+        public DataTable GetBillListByDate(DateTime checkIn, DateTime checkOut)
         {
-            string query = "Update Bill set status = 1 where id = " + id + "";
-            DataProvider.Instance.ExecuteNonQuery(query);
+           return DataProvider.Instance.ExecuteQuery("exec ThongKeHD @checkIn , @checkOut", new object[] {checkIn, checkOut});
         }
+
         
         //Lất id Bill lớn nhất
         public int GetMaxIDBill()
