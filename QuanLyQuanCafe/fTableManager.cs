@@ -109,6 +109,17 @@ namespace QuanLyQuanCafe
         }
 
         #region Events
+
+        private void thanhToánToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnCheckOut_Click(this, new EventArgs());
+        }
+
+        private void thêmMónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnAddFood_Click(this, new EventArgs());
+        }
+
         void btn_Click(object sender, EventArgs e)
         {
             int tableId = ((sender as Button).Tag as Table).ID;
@@ -252,5 +263,7 @@ namespace QuanLyQuanCafe
             }           
         }
         #endregion
+
+       
     }
 }

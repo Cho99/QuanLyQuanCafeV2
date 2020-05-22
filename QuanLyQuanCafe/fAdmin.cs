@@ -359,6 +359,9 @@ namespace QuanLyQuanCafe
 
         }
 
-        
+        private void panel14_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
