@@ -17,7 +17,11 @@ namespace QuanLyQuanCafe
     public partial class fAdmin : Form
     {
         public static string con = "Data Source=GL-522VJ\\SQLEXPRESS;Initial Catalog=QuanLyQuanCafe;Integrated Security=True";
+        
         BindingSource foodList = new BindingSource();
+        BindingSource accountList = new BindingSource();
+
+        public Account loginAccount;
         public fAdmin()
         {
             InitializeComponent();
@@ -33,12 +37,22 @@ namespace QuanLyQuanCafe
         #region methods
         void load()
         {
+            // Load Lại dữ liệu khi thay đổi
             dtgvFood.DataSource = foodList;
+            dtgvAcount.DataSource = accountList;
+
+            //Phần load dành cho bên Thống kê
             loadDateTime();
             LoadListByDate(dtpkFromDate.Value, dtpkToDate.Value);
+
+            //Phần load dành cho bên food
             loadListFood();
             AddFoodBinding();
             LoadCategory(cbFoodCategory);
+
+            //Phần load dành cho bên Accuont
+            loadListAccount();
+            AddAcountBinding();
         }
 
         void searchFoodByName(string name)
@@ -54,6 +68,77 @@ namespace QuanLyQuanCafe
             cmd.Dispose();
             connect.Close();
         }
+        
+        void AddAcountBinding()
+        {
+            txbUserName.DataBindings.Add(new Binding("Text", dtgvAcount.DataSource, "UserName", true , DataSourceUpdateMode.Never));
+            txbDisplayName.DataBindings.Add(new Binding("Text", dtgvAcount.DataSource, "DisplayName", true, DataSourceUpdateMode.Never));
+            txbType.DataBindings.Add(new Binding("Text", dtgvAcount.DataSource, "Type", true, DataSourceUpdateMode.Never));
+        }
+
+        // Lấy dữ liệu tài khoản
+        void loadListAccount()
+        {
+            accountList.DataSource = AccountDAO.Instance.GetListAccount();
+        }
+
+        void AddAccount(string userName, string displayName, int type)
+        {
+            if(AccountDAO.Instance.insertAccuont(userName, displayName, type))
+            {
+                MessageBox.Show("Thêm tài khoản thành công");
+            }
+            else
+            {
+                MessageBox.Show("Lỗi");
+            }
+            loadListAccount();
+        }
+
+        void UpdateAccount(string userName, string displayName, int type)
+        {
+            if (AccountDAO.Instance.updateAccuont(userName, displayName, type))
+            {
+                MessageBox.Show("Cập nhật tài khoản thành công");
+            }
+            else
+            {
+                MessageBox.Show("Lỗi");
+            }
+            loadListAccount();
+        }
+
+        void DeleteAccount(string userName)
+        {
+            if(loginAccount.UserName.Equals(userName))
+            {
+                MessageBox.Show("Vui lòng không xóa tài khoản đang đăng nhập ^^!");
+                return;
+            }
+            if (AccountDAO.Instance.deleteAccuont(userName))
+            {
+                MessageBox.Show("Xóa tài khoản thành công");
+            }
+            else
+            {
+                MessageBox.Show("Lỗi");
+            }
+            loadListAccount();
+        }
+
+        void ResetPassword(string userName)
+        {
+            if (AccountDAO.Instance.resetPassWord(userName))
+            {
+                MessageBox.Show("Reset Mật khẩu thành công");
+            }
+            else
+            {
+                MessageBox.Show("Lỗi");
+            }
+        }
+
+        // lấy dữ liệu món ăn
         void loadListFood()
         {
             //foodList.DataSource = FoodDAO.Instance.GetListFood();
@@ -87,7 +172,6 @@ namespace QuanLyQuanCafe
             txbFoodName.DataBindings.Add(new Binding("Text", dtgvFood.DataSource, "Name", true, DataSourceUpdateMode.Never));
             txbFoodID.DataBindings.Add(new Binding("Text", dtgvFood.DataSource, "ID", true, DataSourceUpdateMode.Never));
             nmFoodPrice.DataBindings.Add(new Binding("Value", dtgvFood.DataSource, "Price",true ,DataSourceUpdateMode.Never));
-            //cbFoodCategory.DataSource.Add( )
         }
         void LoadCategory(ComboBox cb)
         {
@@ -233,13 +317,48 @@ namespace QuanLyQuanCafe
              searchFoodByName(txbSearchFoodName.Text);
         }
 
+
+        private void btnShowAcount_Click(object sender, EventArgs e)
+        {
+            loadListAccount();
+        }
+
+        private void btnAddAcount_Click(object sender, EventArgs e)
+        {
+            string userName = txbUserName.Text;
+            string displayName = txbDisplayName.Text;
+            int type = Convert.ToInt32(txbType.Text);
+            AddAccount(userName, displayName, type);
+        }
+
+        private void btnDeleteAcount_Click(object sender, EventArgs e)
+        {
+            string userName = txbUserName.Text;
+            DeleteAccount(userName);
+        }
+
+        private void btnEditAcount_Click(object sender, EventArgs e)
+        {
+            string userName = txbUserName.Text;
+            string displayName = txbDisplayName.Text;
+            int type = Convert.ToInt32(txbType.Text);
+            UpdateAccount(userName, displayName, type);
+        }
+
+        private void btnResetPassword_Click(object sender, EventArgs e)
+        {
+            string userName = txbUserName.Text;
+            ResetPassword(userName);
+        }
+
         #endregion
+
 
         private void txbSearchFoodName_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-      
+        
     }
 }
