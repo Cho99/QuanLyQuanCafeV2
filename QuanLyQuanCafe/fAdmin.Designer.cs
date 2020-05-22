@@ -273,6 +273,7 @@
             this.txbSearchFoodName.Name = "txbSearchFoodName";
             this.txbSearchFoodName.Size = new System.Drawing.Size(204, 20);
             this.txbSearchFoodName.TabIndex = 3;
+            this.txbSearchFoodName.TextChanged += new System.EventHandler(this.txbSearchFoodName_TextChanged);
             // 
             // btnSearchFood
             // 
@@ -283,6 +284,7 @@
             this.btnSearchFood.TabIndex = 2;
             this.btnSearchFood.Text = "Tìm kiếm";
             this.btnSearchFood.UseVisualStyleBackColor = true;
+            this.btnSearchFood.Click += new System.EventHandler(this.btnSearchFood_Click);
             // 
             // panel5
             // 

@@ -9,11 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace QuanLyQuanCafe
 {
+
     public partial class fAdmin : Form
     {
+        public static string con = "Data Source=GL-522VJ\\SQLEXPRESS;Initial Catalog=QuanLyQuanCafe;Integrated Security=True";
         BindingSource foodList = new BindingSource();
         public fAdmin()
         {
@@ -38,7 +41,17 @@ namespace QuanLyQuanCafe
         #region methods
         void loadListFood()
         {
-            foodList.DataSource = FoodDAO.Instance.GetListFood();
+            //foodList.DataSource = FoodDAO.Instance.GetListFood();
+            SqlConnection connect = new SqlConnection(con);
+            connect.Open();
+            SqlCommand cmd = new SqlCommand("select f.id, f.name, c.id as CategoryID ,c.name as category , f.price from Food as f, FoodCategory as c where f.idCategory = c.id", connect);
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            adapter.SelectCommand = cmd;
+            DataSet dataSet = new DataSet();
+            adapter.Fill(dataSet);
+            foodList.DataSource = dataSet.Tables[0];
+            cmd.Dispose();
+            connect.Close();
         }
 
         // Load thời gian hiển thị của bảng thống kê
@@ -198,6 +211,18 @@ namespace QuanLyQuanCafe
             remove { updateFood -= value; }
         }
 
+        private void btnSearchFood_Click(object sender, EventArgs e)
+        {
+
+        }
+
         #endregion
+
+        private void txbSearchFoodName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+      
     }
 }
