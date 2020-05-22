@@ -24,6 +24,13 @@ namespace QuanLyQuanCafe
             load();
         }
 
+      
+
+        private void fAdmin_Load(object sender, EventArgs e)
+        {
+          
+        }
+        #region methods
         void load()
         {
             dtgvFood.DataSource = foodList;
@@ -34,11 +41,19 @@ namespace QuanLyQuanCafe
             LoadCategory(cbFoodCategory);
         }
 
-        private void fAdmin_Load(object sender, EventArgs e)
+        void searchFoodByName(string name)
         {
-          
+            SqlConnection connect = new SqlConnection(con);
+            connect.Open();
+            SqlCommand cmd = new SqlCommand("select f.id, f.name, c.id as CategoryID ,c.name as category , f.price from Food as f, FoodCategory as c where f.idCategory = c.id and f.name like N'%"+name+"%'", connect);
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            adapter.SelectCommand = cmd;
+            DataSet dataSet = new DataSet();
+            adapter.Fill(dataSet);
+            foodList.DataSource = dataSet.Tables[0];
+            cmd.Dispose();
+            connect.Close();
         }
-        #region methods
         void loadListFood()
         {
             //foodList.DataSource = FoodDAO.Instance.GetListFood();
@@ -98,7 +113,8 @@ namespace QuanLyQuanCafe
 
         private void txtFoodID_TextChanged(object sender, EventArgs e)
         {
-            if (dtgvFood.SelectedCells.Count > 0) 
+            
+            if (dtgvFood.SelectedCells.Count > 0 && dtgvFood.SelectedCells[0].OwningRow.Cells["CategoryID"].Value != null)
             {
                 int id = (int)dtgvFood.SelectedCells[0].OwningRow.Cells["CategoryID"].Value;
                 Category category = CategoryDAO.Instance.GetCategoryByID(id);
@@ -106,9 +122,9 @@ namespace QuanLyQuanCafe
 
                 int index = -1;
                 int i = 0;
-                foreach(Category item in cbFoodCategory.Items)
+                foreach (Category item in cbFoodCategory.Items)
                 {
-                    if(item.ID == category.ID)
+                    if (item.ID == category.ID)
                     {
                         index = i;
                         break;
@@ -116,7 +132,8 @@ namespace QuanLyQuanCafe
                     i++;
                 }
                 cbFoodCategory.SelectedIndex = index;
-            } 
+            }
+            
         }
 
         #endregion
@@ -213,7 +230,7 @@ namespace QuanLyQuanCafe
 
         private void btnSearchFood_Click(object sender, EventArgs e)
         {
-
+             searchFoodByName(txbSearchFoodName.Text);
         }
 
         #endregion
