@@ -1,4 +1,5 @@
 ﻿using QuanLyQuanCafe.DAO;
+using QuanLyQuanCafe.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ namespace QuanLyQuanCafe
 {
     public partial class fAdmin : Form
     {
+        BindingSource foodList = new BindingSource();
         public fAdmin()
         {
             InitializeComponent();
@@ -21,9 +23,12 @@ namespace QuanLyQuanCafe
 
         void load()
         {
+            dtgvFood.DataSource = foodList;
             loadDateTime();
             LoadListByDate(dtpkFromDate.Value, dtpkToDate.Value);
             loadListFood();
+            AddFoodBinding();
+            LoadCategory(cbFoodCategory);
         }
 
         private void fAdmin_Load(object sender, EventArgs e)
@@ -33,7 +38,7 @@ namespace QuanLyQuanCafe
         #region methods
         void loadListFood()
         {
-            dtgvFood.DataSource = FoodDAO.Instance.GetListFood();
+            foodList.DataSource = FoodDAO.Instance.GetListFood();
         }
 
         // Load thời gian hiển thị của bảng thống kê
@@ -47,6 +52,18 @@ namespace QuanLyQuanCafe
         void LoadListByDate(DateTime checkIn, DateTime checkOut)
         { 
             dtgvBill.DataSource = BillDAO.Instance.GetBillListByDate(checkIn, checkOut);
+        }
+
+        void AddFoodBinding()
+        {
+            txbFoodName.DataBindings.Add(new Binding("Text", dtgvFood.DataSource, "Name"));
+            nmFoodPrice.DataBindings.Add(new Binding("Value", dtgvFood.DataSource, "Price"));
+            //cbFoodCategory.DataSource.Add( )
+        }
+        void LoadCategory(ComboBox cb)
+        {
+            cb.DataSource = CategoryDAO.Instance.GetListCategory();
+            cb.DisplayMember = "Name";
         }
         #endregion
 
@@ -63,6 +80,29 @@ namespace QuanLyQuanCafe
         private void btnShowFood_Click(object sender, EventArgs e)
         {
             loadListFood();
+        }
+
+        private void txtFoodID_TextChanged(object sender, EventArgs e)
+        {
+            if (dtgvFood.SelectedCells.Count > 0) 
+            {
+                int id = (int)dtgvFood.SelectedCells[0].OwningRow.Cells["CategoryID"].Value;
+                Category category = CategoryDAO.Instance.GetCategoryByID(id);
+                cbFoodCategory.SelectedItem = category;
+
+                int index = -1;
+                int i = 0;
+                foreach(Category item in cbFoodCategory.Items)
+                {
+                    if(item.ID == category.ID)
+                    {
+                        index = i;
+                        break;
+                    }
+                    i++;
+                }
+                cbFoodCategory.SelectedIndex = index;
+            } 
         }
         #endregion
 
