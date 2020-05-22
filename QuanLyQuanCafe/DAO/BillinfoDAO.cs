@@ -37,5 +37,10 @@ namespace QuanLyQuanCafe.DAO
         {
             DataProvider.Instance.ExecuteNonQuery("exec createBillInfo @idBill , @idFood , @count", new object[] { idBill, idFood, count });
         }
+
+        public void DeleteBillInfoByFoodID(int id)
+        {
+            DataProvider.Instance.ExecuteQuery("Delete BillInfo where idFood =" + id);
+        }
     }
 }

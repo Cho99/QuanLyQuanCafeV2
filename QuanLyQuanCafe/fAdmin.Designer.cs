@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Panel panel7;
             this.tcAdmin = new System.Windows.Forms.TabControl();
             this.tpBill = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -48,7 +50,6 @@
             this.cbFoodCategory = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.txbFoodName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnShowFood = new System.Windows.Forms.Button();
@@ -111,7 +112,9 @@
             this.btnAddAcount = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txbFoodID = new System.Windows.Forms.TextBox();
-            this.panel7 = new System.Windows.Forms.Panel();
+            this.txbFoodName = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            panel7 = new System.Windows.Forms.Panel();
             this.tcAdmin.SuspendLayout();
             this.tpBill.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -150,7 +153,7 @@
             this.panel26.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvAcount)).BeginInit();
             this.panel27.SuspendLayout();
-            this.panel7.SuspendLayout();
+            panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcAdmin
@@ -286,13 +289,12 @@
             this.panel5.Controls.Add(this.panel10);
             this.panel5.Controls.Add(this.panel9);
             this.panel5.Controls.Add(this.panel8);
-            this.panel5.Controls.Add(this.panel7);
+            this.panel5.Controls.Add(panel7);
             this.panel5.Location = new System.Drawing.Point(311, 69);
             this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(282, 344);
             this.panel5.TabIndex = 2;
-            this.panel5.Visible = false;
             // 
             // panel10
             // 
@@ -368,15 +370,6 @@
             this.panel8.Size = new System.Drawing.Size(278, 52);
             this.panel8.TabIndex = 2;
             // 
-            // txbFoodName
-            // 
-            this.txbFoodName.Location = new System.Drawing.Point(91, 17);
-            this.txbFoodName.Margin = new System.Windows.Forms.Padding(2);
-            this.txbFoodName.Name = "txbFoodName";
-            this.txbFoodName.ReadOnly = true;
-            this.txbFoodName.Size = new System.Drawing.Size(186, 20);
-            this.txbFoodName.TabIndex = 1;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -420,6 +413,7 @@
             this.btnEditFood.TabIndex = 2;
             this.btnEditFood.Text = "Sửa";
             this.btnEditFood.UseVisualStyleBackColor = true;
+            this.btnEditFood.Click += new System.EventHandler(this.btnEditFood_Click);
             // 
             // btnDeleteFood
             // 
@@ -430,6 +424,7 @@
             this.btnDeleteFood.TabIndex = 1;
             this.btnDeleteFood.Text = "Xóa";
             this.btnDeleteFood.UseVisualStyleBackColor = true;
+            this.btnDeleteFood.Click += new System.EventHandler(this.btnDeleteFood_Click);
             // 
             // btnAddFood
             // 
@@ -440,6 +435,7 @@
             this.btnAddFood.TabIndex = 0;
             this.btnAddFood.Text = "Thêm";
             this.btnAddFood.UseVisualStyleBackColor = true;
+            this.btnAddFood.Click += new System.EventHandler(this.btnAddFood_Click);
             // 
             // panel3
             // 
@@ -1021,13 +1017,26 @@
             // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.txbFoodID);
-            this.panel7.Controls.Add(this.label1);
-            this.panel7.Location = new System.Drawing.Point(2, 3);
-            this.panel7.Margin = new System.Windows.Forms.Padding(2);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(278, 52);
-            this.panel7.TabIndex = 1;
+            panel7.Controls.Add(this.txbFoodID);
+            panel7.Controls.Add(this.label1);
+            panel7.Location = new System.Drawing.Point(2, 3);
+            panel7.Margin = new System.Windows.Forms.Padding(2);
+            panel7.Name = "panel7";
+            panel7.Size = new System.Drawing.Size(278, 52);
+            panel7.TabIndex = 1;
+            // 
+            // txbFoodName
+            // 
+            this.txbFoodName.Location = new System.Drawing.Point(92, 15);
+            this.txbFoodName.Name = "txbFoodName";
+            this.txbFoodName.Size = new System.Drawing.Size(183, 20);
+            this.txbFoodName.TabIndex = 1;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // fAdmin
             // 
@@ -1090,8 +1099,8 @@
             this.panel26.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvAcount)).EndInit();
             this.panel27.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1139,7 +1148,6 @@
         private System.Windows.Forms.NumericUpDown nmFoodPrice;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.TextBox txbFoodName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Label label6;
@@ -1179,8 +1187,9 @@
         private System.Windows.Forms.Button btnEditAcount;
         private System.Windows.Forms.Button btnDeleteAcount;
         private System.Windows.Forms.Button btnAddAcount;
-        private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.TextBox txbFoodID;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txbFoodName;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }

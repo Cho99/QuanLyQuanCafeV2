@@ -19,6 +19,7 @@ namespace QuanLyQuanCafe.DAO
 
         public FoodDAO() { }
 
+        // Lấy danh sạc thức ăn bằng category
         public List<Food> GetFoodByCategoryID(int id)
         {
             List<Food> list = new List<Food>();
@@ -33,6 +34,7 @@ namespace QuanLyQuanCafe.DAO
             return list;
         }
 
+        // Lấy danh sách thức ăn
         public List<Food> GetListFood()
         {
             List<Food> list = new List<Food>();
@@ -45,6 +47,28 @@ namespace QuanLyQuanCafe.DAO
                 list.Add(food);
             }
             return list;
+        }
+        //Thêm thức ăn
+        public bool insertFood(string name, int id, float price)
+        {
+            string query = "Insert Food(name, idCategory, price) values(N'"+name+"',"+id+","+price+")";
+            int result =  DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+        //Sửa Thức ăn
+        public bool updateFood(int id,string name, int idCategory, float price)
+        {
+            string query = string.Format("update Food set name = N'{1}', idCategory={2} , price = {3}  where id = {0}", id,name,idCategory,price);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+        // Xóa món ăn
+        public bool deleteFood(int id)
+        {
+            BillinfoDAO.Instance.DeleteBillInfoByFoodID(id);
+            string query = string.Format("Delete Food where id = {0}", id);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
         }
     }
 }
