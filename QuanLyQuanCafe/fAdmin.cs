@@ -351,6 +351,14 @@ namespace QuanLyQuanCafe
             ResetPassword(userName);
         }
 
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            DateTime checkIn = Convert.ToDateTime(dtpkFromDate.Value);
+            DateTime checkOut = Convert.ToDateTime(dtpkToDate.Value);
+            fReport fReport = new fReport(checkIn, checkOut);
+            fReport.Show();
+        }
+
         #endregion
 
 
@@ -363,5 +371,7 @@ namespace QuanLyQuanCafe
         {
 
         }
+
+       
     }
 }

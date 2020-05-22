@@ -1050,6 +1050,7 @@
             this.btnReport.TabIndex = 3;
             this.btnReport.Text = "Tạo Báo Cáo";
             this.btnReport.UseVisualStyleBackColor = true;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // fAdmin
             // 
