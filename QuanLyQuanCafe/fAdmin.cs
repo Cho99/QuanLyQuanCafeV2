@@ -18,9 +18,10 @@ namespace QuanLyQuanCafe
     public partial class fAdmin : Form
     {
         public static string con = "Data Source=GL-522VJ\\SQLEXPRESS;Initial Catalog=QuanLyQuanCafe;Integrated Security=True";
-        
+
         BindingSource foodList = new BindingSource();
         BindingSource accountList = new BindingSource();
+        BindingSource tableList = new BindingSource();
 
         public Account loginAccount;
         public fAdmin()
@@ -29,11 +30,11 @@ namespace QuanLyQuanCafe
             load();
         }
 
-      
+
 
         private void fAdmin_Load(object sender, EventArgs e)
         {
-          
+
         }
         #region methods
         void load()
@@ -41,6 +42,7 @@ namespace QuanLyQuanCafe
             // Load Lại dữ liệu khi thay đổi
             dtgvFood.DataSource = foodList;
             dtgvAcount.DataSource = accountList;
+            dtgvTable.DataSource = tableList;
 
             //Phần load dành cho bên Thống kê
             loadDateTime();
@@ -54,13 +56,17 @@ namespace QuanLyQuanCafe
             //Phần load dành cho bên Accuont
             loadListAccount();
             AddAcountBinding();
+
+            // Phần load danh cho bên Table
+            LoadTable();
+            AddTableBinding();
         }
 
         void searchFoodByName(string name)
         {
             SqlConnection connect = new SqlConnection(con);
             connect.Open();
-            SqlCommand cmd = new SqlCommand("select f.id, f.name, c.id as CategoryID ,c.name as category , f.price from Food as f, FoodCategory as c where f.idCategory = c.id and f.name like N'%"+name+"%'", connect);
+            SqlCommand cmd = new SqlCommand("select f.id, f.name, c.id as CategoryID ,c.name as category , f.price from Food as f, FoodCategory as c where f.idCategory = c.id and f.name like N'%" + name + "%'", connect);
             SqlDataAdapter adapter = new SqlDataAdapter();
             adapter.SelectCommand = cmd;
             DataSet dataSet = new DataSet();
@@ -69,10 +75,10 @@ namespace QuanLyQuanCafe
             cmd.Dispose();
             connect.Close();
         }
-        
+
         void AddAcountBinding()
         {
-            txbUserName.DataBindings.Add(new Binding("Text", dtgvAcount.DataSource, "UserName", true , DataSourceUpdateMode.Never));
+            txbUserName.DataBindings.Add(new Binding("Text", dtgvAcount.DataSource, "UserName", true, DataSourceUpdateMode.Never));
             txbDisplayName.DataBindings.Add(new Binding("Text", dtgvAcount.DataSource, "DisplayName", true, DataSourceUpdateMode.Never));
             txbType.DataBindings.Add(new Binding("Text", dtgvAcount.DataSource, "Type", true, DataSourceUpdateMode.Never));
         }
@@ -85,7 +91,7 @@ namespace QuanLyQuanCafe
 
         void AddAccount(string userName, string displayName, int type)
         {
-            if(AccountDAO.Instance.insertAccuont(userName, displayName, type))
+            if (AccountDAO.Instance.insertAccuont(userName, displayName, type))
             {
                 MessageBox.Show("Thêm tài khoản thành công");
             }
@@ -111,7 +117,7 @@ namespace QuanLyQuanCafe
 
         void DeleteAccount(string userName)
         {
-            if(loginAccount.UserName.Equals(userName))
+            if (loginAccount.UserName.Equals(userName))
             {
                 MessageBox.Show("Vui lòng không xóa tài khoản đang đăng nhập ^^!");
                 return;
@@ -164,7 +170,7 @@ namespace QuanLyQuanCafe
         }
 
         void LoadListByDate(DateTime checkIn, DateTime checkOut)
-        { 
+        {
             dtgvBill.DataSource = BillDAO.Instance.GetBillListByDate(checkIn, checkOut);
         }
 
@@ -172,7 +178,7 @@ namespace QuanLyQuanCafe
         {
             txbFoodName.DataBindings.Add(new Binding("Text", dtgvFood.DataSource, "Name", true, DataSourceUpdateMode.Never));
             txbFoodID.DataBindings.Add(new Binding("Text", dtgvFood.DataSource, "ID", true, DataSourceUpdateMode.Never));
-            nmFoodPrice.DataBindings.Add(new Binding("Value", dtgvFood.DataSource, "Price",true ,DataSourceUpdateMode.Never));
+            nmFoodPrice.DataBindings.Add(new Binding("Value", dtgvFood.DataSource, "Price", true, DataSourceUpdateMode.Never));
         }
         void LoadCategory(ComboBox cb)
         {
@@ -198,7 +204,7 @@ namespace QuanLyQuanCafe
 
         private void txtFoodID_TextChanged(object sender, EventArgs e)
         {
-            
+
             if (dtgvFood.SelectedCells.Count > 0 && dtgvFood.SelectedCells[0].OwningRow.Cells["CategoryID"].Value != null)
             {
                 int id = (int)dtgvFood.SelectedCells[0].OwningRow.Cells["CategoryID"].Value;
@@ -218,7 +224,7 @@ namespace QuanLyQuanCafe
                 }
                 cbFoodCategory.SelectedIndex = index;
             }
-            
+
         }
 
         #endregion
@@ -281,7 +287,7 @@ namespace QuanLyQuanCafe
             {
                 MessageBox.Show("Xóa món ăn thành công");
                 loadListFood();
-                if(deletetFood != null)
+                if (deletetFood != null)
                 {
                     deletetFood(this, new EventArgs());
                 }
@@ -315,7 +321,7 @@ namespace QuanLyQuanCafe
 
         private void btnSearchFood_Click(object sender, EventArgs e)
         {
-             searchFoodByName(txbSearchFoodName.Text);
+            searchFoodByName(txbSearchFoodName.Text);
         }
 
 
@@ -352,7 +358,7 @@ namespace QuanLyQuanCafe
             ResetPassword(userName);
         }
 
-     
+
 
         #endregion
 
@@ -375,7 +381,6 @@ namespace QuanLyQuanCafe
             fReport fReport = new fReport(checkIn, checkOut);
             fReport.Show();
         }
-
         #endregion
 
         #region Excel
@@ -489,8 +494,82 @@ namespace QuanLyQuanCafe
             connect.Close();
             ExportExcel(ds.Tables[0], "Thống Kê Tài Chính");
         }
+
         #endregion
 
+        #region methodTable
+        void LoadTable()
+        {
+            tableList.DataSource = TableDAO.Instance.GetListTable();
+        }
 
+        void AddTableBinding()
+        {
+            txbTableID.DataBindings.Add(new Binding("Text", dtgvTable.DataSource, "id", true, DataSourceUpdateMode.Never));
+            txbTableName.DataBindings.Add(new Binding("Text", dtgvTable.DataSource, "name", true, DataSourceUpdateMode.Never));
+            txbStatusTable.DataBindings.Add(new Binding("Text", dtgvTable.DataSource, "status", true, DataSourceUpdateMode.Never));
+        }
+        #endregion
+
+        #region eventTable
+        private void btnAddTable_Click_1(object sender, EventArgs e)
+        {
+            string nameTable = txbTableName.Text;
+            if (TableDAO.Instance.insertTable(nameTable))
+            {
+                MessageBox.Show("Thêm bàn ăn thành công");
+            }
+            else
+            {
+                MessageBox.Show("Lỗi");
+            }
+            LoadTable();
+        }
+
+        private void btnShowTable_Click_1(object sender, EventArgs e)
+        {
+            LoadTable();
+        }
+
+        private void btnEditTable_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(txbTableID.Text);
+            string name = txbTableName.Text;
+            if (TableDAO.Instance.updateTable(id, name))
+            {
+                MessageBox.Show("Sửa bàn ăn thành công");
+            }
+            else
+            {
+                MessageBox.Show("Lỗi");
+            }
+            LoadTable();
+        }
+
+        private void btnDeleteTable_Click_1(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(txbTableID.Text);
+            string status = txbStatusTable.Text;
+            if (status.Equals("Có người"))
+            {
+                MessageBox.Show("Không thể xóa bàn có người");
+                return;
+            }
+            if (TableDAO.Instance.deleteTable(id))
+            {
+                MessageBox.Show("Xóa bàn ăn thành công");
+            }
+            else
+            {
+                MessageBox.Show("Lỗi");
+            }
+            LoadTable();
+        }
+
+
+
+        #endregion
+
+      
     }
 }

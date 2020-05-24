@@ -48,3 +48,4 @@ C:\Users\MyPC\source\repos\QuanLyQuanCafe\QuanLyQuanCafe\bin\Debug\CrystalDecisi
 C:\Users\MyPC\source\repos\QuanLyQuanCafe\QuanLyQuanCafe\bin\Debug\CrystalDecisions.ReportAppServer.ObjectFactory.dll
 C:\Users\MyPC\source\repos\QuanLyQuanCafe\QuanLyQuanCafe\bin\Debug\stdole.dll
 C:\Users\MyPC\source\repos\QuanLyQuanCafe\QuanLyQuanCafe\bin\Debug\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\MyPC\source\repos\QuanLyQuanCafe\QuanLyQuanCafe\obj\Debug\QuanLyQuanCafe.csprojAssemblyReference.cache

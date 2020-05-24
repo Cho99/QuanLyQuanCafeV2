@@ -55,7 +55,7 @@
             this.tpTable = new System.Windows.Forms.TabPage();
             this.panel13 = new System.Windows.Forms.Panel();
             this.panel21 = new System.Windows.Forms.Panel();
-            this.cbTableStatus = new System.Windows.Forms.ComboBox();
+            this.txbStatusTable = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.panel15 = new System.Windows.Forms.Panel();
             this.txbTableName = new System.Windows.Forms.TextBox();
@@ -108,6 +108,7 @@
             this.dtgvFood = new System.Windows.Forms.DataGridView();
             this.tpBill = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnExcel = new System.Windows.Forms.Button();
             this.btnReport = new System.Windows.Forms.Button();
             this.btnViewBill = new System.Windows.Forms.Button();
             this.dtpkToDate = new System.Windows.Forms.DateTimePicker();
@@ -115,7 +116,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.dtgvBill = new System.Windows.Forms.DataGridView();
             this.tcAdmin = new System.Windows.Forms.TabControl();
-            this.btnExcel = new System.Windows.Forms.Button();
             panel7 = new System.Windows.Forms.Panel();
             panel7.SuspendLayout();
             this.tpAcount.SuspendLayout();
@@ -418,7 +418,7 @@
             // 
             // panel21
             // 
-            this.panel21.Controls.Add(this.cbTableStatus);
+            this.panel21.Controls.Add(this.txbStatusTable);
             this.panel21.Controls.Add(this.label9);
             this.panel21.Location = new System.Drawing.Point(2, 116);
             this.panel21.Margin = new System.Windows.Forms.Padding(2);
@@ -426,14 +426,13 @@
             this.panel21.Size = new System.Drawing.Size(453, 56);
             this.panel21.TabIndex = 4;
             // 
-            // cbTableStatus
+            // txbStatusTable
             // 
-            this.cbTableStatus.FormattingEnabled = true;
-            this.cbTableStatus.Location = new System.Drawing.Point(129, 17);
-            this.cbTableStatus.Margin = new System.Windows.Forms.Padding(2);
-            this.cbTableStatus.Name = "cbTableStatus";
-            this.cbTableStatus.Size = new System.Drawing.Size(202, 21);
-            this.cbTableStatus.TabIndex = 1;
+            this.txbStatusTable.Location = new System.Drawing.Point(129, 15);
+            this.txbStatusTable.Name = "txbStatusTable";
+            this.txbStatusTable.ReadOnly = true;
+            this.txbStatusTable.Size = new System.Drawing.Size(202, 20);
+            this.txbStatusTable.TabIndex = 1;
             // 
             // label9
             // 
@@ -461,7 +460,6 @@
             this.txbTableName.Location = new System.Drawing.Point(129, 17);
             this.txbTableName.Margin = new System.Windows.Forms.Padding(2);
             this.txbTableName.Name = "txbTableName";
-            this.txbTableName.ReadOnly = true;
             this.txbTableName.Size = new System.Drawing.Size(202, 20);
             this.txbTableName.TabIndex = 2;
             // 
@@ -546,6 +544,7 @@
             this.btnShowTable.TabIndex = 3;
             this.btnShowTable.Text = "Xem";
             this.btnShowTable.UseVisualStyleBackColor = true;
+            this.btnShowTable.Click += new System.EventHandler(this.btnShowTable_Click_1);
             // 
             // btnEditTable
             // 
@@ -556,6 +555,7 @@
             this.btnEditTable.TabIndex = 2;
             this.btnEditTable.Text = "Sửa";
             this.btnEditTable.UseVisualStyleBackColor = true;
+            this.btnEditTable.Click += new System.EventHandler(this.btnEditTable_Click);
             // 
             // btnDeleteTable
             // 
@@ -566,6 +566,7 @@
             this.btnDeleteTable.TabIndex = 1;
             this.btnDeleteTable.Text = "Xóa";
             this.btnDeleteTable.UseVisualStyleBackColor = true;
+            this.btnDeleteTable.Click += new System.EventHandler(this.btnDeleteTable_Click_1);
             // 
             // btnAddTable
             // 
@@ -576,6 +577,7 @@
             this.btnAddTable.TabIndex = 0;
             this.btnAddTable.Text = "Thêm";
             this.btnAddTable.UseVisualStyleBackColor = true;
+            this.btnAddTable.Click += new System.EventHandler(this.btnAddTable_Click_1);
             // 
             // tpFoodCategory
             // 
@@ -983,6 +985,17 @@
             this.panel2.Size = new System.Drawing.Size(764, 26);
             this.panel2.TabIndex = 1;
             // 
+            // btnExcel
+            // 
+            this.btnExcel.Location = new System.Drawing.Point(455, 2);
+            this.btnExcel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(124, 21);
+            this.btnExcel.TabIndex = 4;
+            this.btnExcel.Text = "Xuất File Excel";
+            this.btnExcel.UseVisualStyleBackColor = true;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
             // btnReport
             // 
             this.btnReport.Location = new System.Drawing.Point(319, 2);
@@ -1053,17 +1066,6 @@
             this.tcAdmin.SelectedIndex = 0;
             this.tcAdmin.Size = new System.Drawing.Size(780, 441);
             this.tcAdmin.TabIndex = 0;
-            // 
-            // btnExcel
-            // 
-            this.btnExcel.Location = new System.Drawing.Point(455, 2);
-            this.btnExcel.Margin = new System.Windows.Forms.Padding(2);
-            this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(124, 21);
-            this.btnExcel.TabIndex = 4;
-            this.btnExcel.Text = "Xuất File Excel";
-            this.btnExcel.UseVisualStyleBackColor = true;
-            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
             // fAdmin
             // 
@@ -1156,7 +1158,6 @@
         private System.Windows.Forms.TabPage tpTable;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Panel panel21;
-        private System.Windows.Forms.ComboBox cbTableStatus;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.TextBox txbTableName;
@@ -1219,5 +1220,6 @@
         private System.Windows.Forms.TabControl tcAdmin;
         private System.Windows.Forms.Button btnReport;
         private System.Windows.Forms.Button btnExcel;
+        private System.Windows.Forms.TextBox txbStatusTable;
     }
 }
