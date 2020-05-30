@@ -1,4 +1,5 @@
-﻿Thêm vào bảng FoodCategory
+﻿
+Thêm vào bảng FoodCategory
 
 Insert FoodCategory Values (N'Cafe')
 Insert FoodCategory Values (N'Hoa Quả')
@@ -55,3 +56,98 @@ Select * from BillInfo where idBill = 3
 
 Select f.name, bi.count, f.price, f.price*bi.count as totalPrice from BillInfo As bi, Bill as b, Food as f 
 where bi.idBill = b.id And bi.idFood = f.id And b.idTable = 3
+
+select * from Bill
+select * from BillInfo
+select * from TableFood
+select * from Food
+
+Select MAX(id) from BillInfo
+
+alter Trigger UpdateBillInfo
+On BillInfo For insert, update
+as
+begin
+	declare @idBill int
+
+	select @idBill = idBill from inserted
+
+	declare @idTable int	
+
+	select @idTable = idTable from Bill where id = @idBill and status = 0
+
+	declare @count int
+	select @count = COUNT(*) from BillInfo where idBill = @idBill
+	if(@count > 0)
+	begin
+		Update TableFood set status = N'Có người' where id = @idTable
+	end
+	else
+	begin
+		Update TableFood set status = N'Trống' where id = @idTable
+	end
+end
+go
+
+create trigger UpdateBill
+On Bill for update
+as
+begin
+	declare @idBill Int
+	
+	select @idBill = id from inserted
+
+	declare @idTabel int	
+
+	select @idTabel = idTable from Bill where id = @idBill
+
+	declare @count int = 0
+
+	select @count = COUNT(*) from Bill where idTable = @idTabel and status = 0
+	
+	if(@count = 0) 
+8		update TableFood set status = N'Trống' where id = @idTabel
+end
+go
+
+create trigger DeleteBill
+On BillInfo for Delete
+as
+begin
+	declare @idBillInfo int
+	declare @idBill int
+	select @idBillInfo = id, @idBill = deleted.idBill from deleted
+
+	declare @idTable Int
+	select @idTable = idTable from Bill where id = @idBill
+
+	declare @count int = 0
+
+	select @count = COUNT(*) from BillInfo as bi, Bill as b where b.id = bi.idBill and b.id = @idBill and b.status = 0
+
+	
+
+	if(@count = 0) 
+		Update TableFood set status = N'Trống' where id = @idTable
+end
+go
+
+
+select f.id, f.name, c.id as CategoryID ,c.name as category , f.price from Food as f, FoodCategory as c where f.idCategory = c.id  
+
+backup database QuanLyQuanCafe to disk = 'd:\QLCafee.bak'
+
+
+select * from TableFood
+
+insert TableFood(name) values(N'"++"')
+
+select * from FoodCategory
+select * from BillInfo
+
+
+
+select * from FoodCategory where Exists(select f.idCategory  from Food as f, BillInfo as bi where FoodCategory.id = f.idCategory and f.id = bi.idFood And f.idCategory = 5)
+
+
+select * from FoodCategory where Exists(select f.idCategory  from Food as f, BillInfo as bi where FoodCategory.id = f.idCategory and f.id = bi.idFood And f.idCategory = 1)
