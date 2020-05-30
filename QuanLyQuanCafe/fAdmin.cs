@@ -22,6 +22,7 @@ namespace QuanLyQuanCafe
         BindingSource foodList = new BindingSource();
         BindingSource accountList = new BindingSource();
         BindingSource tableList = new BindingSource();
+        BindingSource categoryList = new BindingSource();
 
         public Account loginAccount;
         public fAdmin()
@@ -29,8 +30,6 @@ namespace QuanLyQuanCafe
             InitializeComponent();
             load();
         }
-
-
 
         private void fAdmin_Load(object sender, EventArgs e)
         {
@@ -43,6 +42,7 @@ namespace QuanLyQuanCafe
             dtgvFood.DataSource = foodList;
             dtgvAcount.DataSource = accountList;
             dtgvTable.DataSource = tableList;
+            dtgvCategory.DataSource = categoryList;
 
             //Phần load dành cho bên Thống kê
             loadDateTime();
@@ -60,6 +60,10 @@ namespace QuanLyQuanCafe
             // Phần load danh cho bên Table
             LoadTable();
             AddTableBinding();
+
+            // Phần load dành cho Category
+            loadCategory();
+            AddCategoryBinding();
         }
 
         void searchFoodByName(string name)
@@ -518,6 +522,11 @@ namespace QuanLyQuanCafe
             if (TableDAO.Instance.insertTable(nameTable))
             {
                 MessageBox.Show("Thêm bàn ăn thành công");
+                LoadTable();
+                if (insertTable != null)
+                {
+                    insertTable(this, new EventArgs());
+                }
             }
             else
             {
@@ -538,12 +547,17 @@ namespace QuanLyQuanCafe
             if (TableDAO.Instance.updateTable(id, name))
             {
                 MessageBox.Show("Sửa bàn ăn thành công");
+                LoadTable();
+                if (updateTable != null)
+                {
+                    updateTable(this, new EventArgs());
+                }
             }
             else
             {
                 MessageBox.Show("Lỗi");
             }
-            LoadTable();
+            
         }
 
         private void btnDeleteTable_Click_1(object sender, EventArgs e)
@@ -558,18 +572,136 @@ namespace QuanLyQuanCafe
             if (TableDAO.Instance.deleteTable(id))
             {
                 MessageBox.Show("Xóa bàn ăn thành công");
+                LoadTable();
+                if (deleteTable != null)
+                {
+                    deleteTable(this, new EventArgs());
+                }
             }
             else
             {
                 MessageBox.Show("Lỗi");
             }
-            LoadTable();
+           
         }
 
+        private event EventHandler insertTable;
+        public event EventHandler InsertTable
+        {
+            add { insertTable += value; }
+            remove { insertTable -= value; }
+        }
 
+        private event EventHandler updateTable;
+        public event EventHandler UpdateTable
+        {
+            add { updateTable += value; }
+            remove { updateTable -= value; }
+        }
 
+        private event EventHandler deleteTable;
+        public event EventHandler DeleteTable
+        {
+            add { deleteTable += value; }
+            remove { deleteTable -= value; }
+        }
         #endregion
 
-      
+        #region eventsCatergoy
+        void loadCategory()
+        {
+            categoryList.DataSource = CategoryDAO.Instance.GetCategory();
+        }
+
+        void AddCategoryBinding()
+        {
+            txbCategoryID.DataBindings.Add(new Binding("Text", dtgvCategory.DataSource, "id", true, DataSourceUpdateMode.Never));
+            txbCategoryName.DataBindings.Add(new Binding("Text", dtgvCategory.DataSource, "name", true, DataSourceUpdateMode.Never));
+          
+        }
+
+        private void btnShowCategory_Click(object sender, EventArgs e)
+        {
+            loadCategory();
+        }
+
+        private void btnAddCategory_Click(object sender, EventArgs e)
+        {
+            string nameCategory = txbCategoryName.Text;
+            if (CategoryDAO.Instance.insertCategory(nameCategory))
+            {
+                MessageBox.Show("Thêm Category thành công");
+                loadCategory();
+                if (insertCategory != null)
+                {
+                    insertCategory(this, new EventArgs());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Lỗi");
+            }
+        }
+
+        private void btnEditCategory_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(txbCategoryID.Text);
+            string name = txbCategoryName.Text;
+            if (CategoryDAO.Instance.updateCategory(id, name))
+            {
+                MessageBox.Show("Sửa bàn ăn Category thành công");
+                loadCategory();
+                if (updateCategory != null)
+                {
+                    updateCategory(this, new EventArgs());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Lỗi");
+            }
+
+        }
+
+        private void btnDeleteCategory_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(txbCategoryID.Text);
+            if (CategoryDAO.Instance.deleteCategory(id))
+            {
+                MessageBox.Show("Xóa Category thành công");
+                loadCategory();
+                if (deleteTable != null)
+                {
+                    deleteTable(this, new EventArgs());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Lỗi không thể xóa Category khi có món ăn ở trong Hóa đơn");
+            }
+        }
+
+        private event EventHandler insertCategory;
+        public event EventHandler InsertCategory
+        {
+            add { insertCategory += value; }
+            remove { insertCategory -= value; }
+        }
+
+        private event EventHandler updateCategory;
+        public event EventHandler UpdateCategory
+        {
+            add { updateCategory += value; }
+            remove { updateCategory -= value; }
+        }
+
+        private event EventHandler deleteCategory;
+        public event EventHandler DeleteCategory
+        {
+            add { deleteCategory += value; }
+            remove { deleteCategory -= value; }
+        }
+
+        #endregion
     }
 }

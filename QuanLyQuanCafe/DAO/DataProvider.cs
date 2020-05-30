@@ -72,7 +72,14 @@ namespace QuanLyQuanCafe.DAO
                         }
                     }
                 }
-                data = command.ExecuteNonQuery();
+                try
+                {
+                  data = command.ExecuteNonQuery();
+                } catch
+                {
+                    
+                }
+              
                 connection.Close();
             }
             return data;

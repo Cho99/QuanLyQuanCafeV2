@@ -597,10 +597,10 @@
             // 
             this.panel14.Controls.Add(this.panel16);
             this.panel14.Controls.Add(this.panel18);
-            this.panel14.Location = new System.Drawing.Point(405, 74);
+            this.panel14.Location = new System.Drawing.Point(264, 74);
             this.panel14.Margin = new System.Windows.Forms.Padding(2);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(363, 344);
+            this.panel14.Size = new System.Drawing.Size(504, 344);
             this.panel14.TabIndex = 5;
             this.panel14.Paint += new System.Windows.Forms.PaintEventHandler(this.panel14_Paint);
             // 
@@ -611,7 +611,7 @@
             this.panel16.Location = new System.Drawing.Point(2, 57);
             this.panel16.Margin = new System.Windows.Forms.Padding(2);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(359, 55);
+            this.panel16.Size = new System.Drawing.Size(500, 55);
             this.panel16.TabIndex = 3;
             // 
             // txbCategoryName
@@ -619,8 +619,7 @@
             this.txbCategoryName.Location = new System.Drawing.Point(129, 20);
             this.txbCategoryName.Margin = new System.Windows.Forms.Padding(2);
             this.txbCategoryName.Name = "txbCategoryName";
-            this.txbCategoryName.ReadOnly = true;
-            this.txbCategoryName.Size = new System.Drawing.Size(217, 20);
+            this.txbCategoryName.Size = new System.Drawing.Size(369, 20);
             this.txbCategoryName.TabIndex = 2;
             // 
             // label6
@@ -641,7 +640,7 @@
             this.panel18.Location = new System.Drawing.Point(2, 0);
             this.panel18.Margin = new System.Windows.Forms.Padding(2);
             this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(359, 55);
+            this.panel18.Size = new System.Drawing.Size(500, 55);
             this.panel18.TabIndex = 1;
             // 
             // txbCategoryID
@@ -650,7 +649,7 @@
             this.txbCategoryID.Margin = new System.Windows.Forms.Padding(2);
             this.txbCategoryID.Name = "txbCategoryID";
             this.txbCategoryID.ReadOnly = true;
-            this.txbCategoryID.Size = new System.Drawing.Size(215, 20);
+            this.txbCategoryID.Size = new System.Drawing.Size(369, 20);
             this.txbCategoryID.TabIndex = 1;
             // 
             // label8
@@ -670,7 +669,7 @@
             this.panel12.Location = new System.Drawing.Point(4, 74);
             this.panel12.Margin = new System.Windows.Forms.Padding(2);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(401, 344);
+            this.panel12.Size = new System.Drawing.Size(256, 344);
             this.panel12.TabIndex = 3;
             // 
             // dtgvCategory
@@ -680,7 +679,7 @@
             this.dtgvCategory.Margin = new System.Windows.Forms.Padding(2);
             this.dtgvCategory.Name = "dtgvCategory";
             this.dtgvCategory.RowTemplate.Height = 24;
-            this.dtgvCategory.Size = new System.Drawing.Size(397, 340);
+            this.dtgvCategory.Size = new System.Drawing.Size(254, 340);
             this.dtgvCategory.TabIndex = 0;
             // 
             // panel11
@@ -692,7 +691,7 @@
             this.panel11.Location = new System.Drawing.Point(4, 5);
             this.panel11.Margin = new System.Windows.Forms.Padding(2);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(401, 58);
+            this.panel11.Size = new System.Drawing.Size(256, 58);
             this.panel11.TabIndex = 2;
             // 
             // btnShowCategory
@@ -704,6 +703,7 @@
             this.btnShowCategory.TabIndex = 3;
             this.btnShowCategory.Text = "Xem";
             this.btnShowCategory.UseVisualStyleBackColor = true;
+            this.btnShowCategory.Click += new System.EventHandler(this.btnShowCategory_Click);
             // 
             // btnEditCategory
             // 
@@ -714,6 +714,7 @@
             this.btnEditCategory.TabIndex = 2;
             this.btnEditCategory.Text = "Sửa";
             this.btnEditCategory.UseVisualStyleBackColor = true;
+            this.btnEditCategory.Click += new System.EventHandler(this.btnEditCategory_Click);
             // 
             // btnDeleteCategory
             // 
@@ -724,6 +725,7 @@
             this.btnDeleteCategory.TabIndex = 1;
             this.btnDeleteCategory.Text = "Xóa";
             this.btnDeleteCategory.UseVisualStyleBackColor = true;
+            this.btnDeleteCategory.Click += new System.EventHandler(this.btnDeleteCategory_Click);
             // 
             // btnAddCategory
             // 
@@ -734,6 +736,7 @@
             this.btnAddCategory.TabIndex = 0;
             this.btnAddCategory.Text = "Thêm";
             this.btnAddCategory.UseVisualStyleBackColor = true;
+            this.btnAddCategory.Click += new System.EventHandler(this.btnAddCategory_Click);
             // 
             // tpFood
             // 
