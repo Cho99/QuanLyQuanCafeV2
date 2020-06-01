@@ -116,6 +116,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.dtgvBill = new System.Windows.Forms.DataGridView();
             this.tcAdmin = new System.Windows.Forms.TabControl();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             panel7 = new System.Windows.Forms.Panel();
             panel7.SuspendLayout();
             this.tpAcount.SuspendLayout();
@@ -197,6 +200,9 @@
             // 
             // tpAcount
             // 
+            this.tpAcount.Controls.Add(this.label15);
+            this.tpAcount.Controls.Add(this.label14);
+            this.tpAcount.Controls.Add(this.label13);
             this.tpAcount.Controls.Add(this.panel22);
             this.tpAcount.Controls.Add(this.panel26);
             this.tpAcount.Controls.Add(this.panel27);
@@ -1070,6 +1076,36 @@
             this.tcAdmin.Size = new System.Drawing.Size(780, 441);
             this.tcAdmin.TabIndex = 0;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Violet;
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(429, 8);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(275, 13);
+            this.label13.TabIndex = 12;
+            this.label13.Text = "Tài Khoản Sau Khi Thêm Vào Mặc Định sẽ là: nhân viên";
+            this.label13.Click += new System.EventHandler(this.label13_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(428, 25);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(95, 13);
+            this.label14.TabIndex = 13;
+            this.label14.Text = "1: tài khoản Admin";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(429, 47);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(116, 13);
+            this.label15.TabIndex = 14;
+            this.label15.Text = "0: tài khoản Nhân Viên";
+            // 
             // fAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1084,6 +1120,7 @@
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
             this.tpAcount.ResumeLayout(false);
+            this.tpAcount.PerformLayout();
             this.panel22.ResumeLayout(false);
             this.panel23.ResumeLayout(false);
             this.panel23.PerformLayout();
@@ -1224,5 +1261,8 @@
         private System.Windows.Forms.Button btnReport;
         private System.Windows.Forms.Button btnExcel;
         private System.Windows.Forms.TextBox txbStatusTable;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
     }
 }

@@ -179,8 +179,9 @@ namespace QuanLyQuanCafe
             fAcountProfile f = new fAcountProfile(LoginAccount);
             f.ShowDialog();
         }
-        
 
+
+        #region Event
         private void adminToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fAdmin f = new fAdmin();
@@ -251,7 +252,7 @@ namespace QuanLyQuanCafe
         private void F_InsertFood(object sender, EventArgs e)
         {
             LoadFoodByCategory((cbCategory.SelectedItem as Category).ID);
-            if(lsvBill.Tag != null)
+            if (lsvBill.Tag != null)
                 ShowBill((lsvBill.Tag as Table).ID);
         }
 
@@ -264,6 +265,7 @@ namespace QuanLyQuanCafe
         {
 
         }
+        #endregion
 
         private void lsvBill_SelectedIndexChanged(object sender, EventArgs e)
         {
