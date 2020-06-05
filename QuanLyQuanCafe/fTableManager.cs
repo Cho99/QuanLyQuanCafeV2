@@ -281,12 +281,13 @@ namespace QuanLyQuanCafe
             double totalPrice = Convert.ToDouble(txt_TotalPrice.Text.Split(',')[0]); // Tổng tiền chưa giảm giá
             double finalTotalPrice = totalPrice - (totalPrice / 100) * discount;//Tổng tiền sau khi đã tính với giảm giá
 
-
             if (idBill != -1)
             {
                 if (MessageBox.Show(string.Format("Bạn có muốn thanh toán hóa đơn cho bàn {0}\n Tổng tiền - (Tổng tiền/100) x Giảm giá \n= {1} - ({1}/100) x {2} = {3}", table.Name, totalPrice, discount, finalTotalPrice ), "Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
                 {
                     BillDAO.Instance.CheckOut(idBill,discount, (float)finalTotalPrice);
+                    fHoaDon fHoaDon = new fHoaDon(idBill);
+                    fHoaDon.Show();
                     ShowBill(table.ID);
                     LoadTable();
                 }

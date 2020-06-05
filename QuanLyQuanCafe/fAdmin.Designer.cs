@@ -34,6 +34,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tpAcount = new System.Windows.Forms.TabPage();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.panel22 = new System.Windows.Forms.Panel();
             this.btnResetPassword = new System.Windows.Forms.Button();
             this.panel23 = new System.Windows.Forms.Panel();
@@ -116,9 +119,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.dtgvBill = new System.Windows.Forms.DataGridView();
             this.tcAdmin = new System.Windows.Forms.TabControl();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             panel7 = new System.Windows.Forms.Panel();
             panel7.SuspendLayout();
             this.tpAcount.SuspendLayout();
@@ -214,6 +214,37 @@
             this.tpAcount.TabIndex = 4;
             this.tpAcount.Text = "Tài khoản";
             this.tpAcount.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(429, 47);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(116, 13);
+            this.label15.TabIndex = 14;
+            this.label15.Text = "0: tài khoản Nhân Viên";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(428, 25);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(95, 13);
+            this.label14.TabIndex = 13;
+            this.label14.Text = "1: tài khoản Admin";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Cyan;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(429, 8);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(41, 13);
+            this.label13.TabIndex = 12;
+            this.label13.Text = "Chú Ý";
+            this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // panel22
             // 
@@ -1075,36 +1106,6 @@
             this.tcAdmin.SelectedIndex = 0;
             this.tcAdmin.Size = new System.Drawing.Size(780, 441);
             this.tcAdmin.TabIndex = 0;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.Violet;
-            this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(429, 8);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(275, 13);
-            this.label13.TabIndex = 12;
-            this.label13.Text = "Tài Khoản Sau Khi Thêm Vào Mặc Định sẽ là: nhân viên";
-            this.label13.Click += new System.EventHandler(this.label13_Click);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(428, 25);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(95, 13);
-            this.label14.TabIndex = 13;
-            this.label14.Text = "1: tài khoản Admin";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(429, 47);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(116, 13);
-            this.label15.TabIndex = 14;
-            this.label15.Text = "0: tài khoản Nhân Viên";
             // 
             // fAdmin
             // 
