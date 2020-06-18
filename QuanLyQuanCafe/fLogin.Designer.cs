@@ -41,7 +41,6 @@
             // 
             // panel1
             // 
-            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.txbUserName);
             this.panel1.Controls.Add(this.txbPassWord);
@@ -49,10 +48,10 @@
             this.panel1.Controls.Add(this.btn_Login);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnExit);
-            this.panel1.Location = new System.Drawing.Point(0, -1);
+            this.panel1.Location = new System.Drawing.Point(1, -1);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(465, 200);
+            this.panel1.Size = new System.Drawing.Size(464, 200);
             this.panel1.TabIndex = 0;
             // 
             // btn_Login
@@ -81,7 +80,6 @@
             // 
             this.txbUserName.Location = new System.Drawing.Point(172, 33);
             this.txbUserName.Margin = new System.Windows.Forms.Padding(2);
-            this.txbUserName.Multiline = true;
             this.txbUserName.Name = "txbUserName";
             this.txbUserName.Size = new System.Drawing.Size(270, 20);
             this.txbUserName.TabIndex = 1;
@@ -89,7 +87,6 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(10, 32);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -102,7 +99,6 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(10, 71);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
