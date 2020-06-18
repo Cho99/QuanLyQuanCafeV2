@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Panel panel7;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fAdmin));
             this.txbFoodID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -252,10 +253,10 @@
             this.panel22.Controls.Add(this.panel23);
             this.panel22.Controls.Add(this.panel24);
             this.panel22.Controls.Add(this.panel25);
-            this.panel22.Location = new System.Drawing.Point(426, 69);
+            this.panel22.Location = new System.Drawing.Point(385, 69);
             this.panel22.Margin = new System.Windows.Forms.Padding(2);
             this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(346, 344);
+            this.panel22.Size = new System.Drawing.Size(387, 344);
             this.panel22.TabIndex = 11;
             // 
             // btnResetPassword
@@ -359,7 +360,7 @@
             this.panel26.Location = new System.Drawing.Point(3, 68);
             this.panel26.Margin = new System.Windows.Forms.Padding(2);
             this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(423, 344);
+            this.panel26.Size = new System.Drawing.Size(380, 344);
             this.panel26.TabIndex = 10;
             // 
             // dtgvAcount
@@ -369,7 +370,7 @@
             this.dtgvAcount.Margin = new System.Windows.Forms.Padding(2);
             this.dtgvAcount.Name = "dtgvAcount";
             this.dtgvAcount.RowTemplate.Height = 24;
-            this.dtgvAcount.Size = new System.Drawing.Size(418, 343);
+            this.dtgvAcount.Size = new System.Drawing.Size(375, 343);
             this.dtgvAcount.TabIndex = 0;
             // 
             // panel27
@@ -634,10 +635,10 @@
             // 
             this.panel14.Controls.Add(this.panel16);
             this.panel14.Controls.Add(this.panel18);
-            this.panel14.Location = new System.Drawing.Point(264, 74);
+            this.panel14.Location = new System.Drawing.Point(370, 74);
             this.panel14.Margin = new System.Windows.Forms.Padding(2);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(504, 344);
+            this.panel14.Size = new System.Drawing.Size(398, 344);
             this.panel14.TabIndex = 5;
             this.panel14.Paint += new System.Windows.Forms.PaintEventHandler(this.panel14_Paint);
             // 
@@ -706,7 +707,7 @@
             this.panel12.Location = new System.Drawing.Point(4, 74);
             this.panel12.Margin = new System.Windows.Forms.Padding(2);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(256, 344);
+            this.panel12.Size = new System.Drawing.Size(364, 344);
             this.panel12.TabIndex = 3;
             // 
             // dtgvCategory
@@ -716,7 +717,7 @@
             this.dtgvCategory.Margin = new System.Windows.Forms.Padding(2);
             this.dtgvCategory.Name = "dtgvCategory";
             this.dtgvCategory.RowTemplate.Height = 24;
-            this.dtgvCategory.Size = new System.Drawing.Size(254, 340);
+            this.dtgvCategory.Size = new System.Drawing.Size(360, 340);
             this.dtgvCategory.TabIndex = 0;
             // 
             // panel11
@@ -1113,6 +1114,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(792, 461);
             this.Controls.Add(this.tcAdmin);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "fAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

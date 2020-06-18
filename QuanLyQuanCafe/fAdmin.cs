@@ -670,9 +670,9 @@ namespace QuanLyQuanCafe
             {
                 MessageBox.Show("Xóa Category thành công");
                 loadCategory();
-                if (deleteTable != null)
+                if (deleteCategory != null)
                 {
-                    deleteTable(this, new EventArgs());
+                    deleteCategory(this, new EventArgs());
                 }
             }
             else
